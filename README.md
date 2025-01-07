@@ -1,146 +1,230 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Heritage Housing Analysis
 
-## Template Instructions
+![Banner](readme_images/banner.png)
 
-Welcome,
+---
 
-This is the Code Institute student template for the Heritage Housing project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+## Table of Contents
 
-You can safely delete the Template Instructions section of this README.md file,  and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+1. [Introduction](#introduction)
+2. [How to Use This Repo](#how-to-use-this-repo)
+3. [Dataset Content](#dataset-content)
+4. [Business Requirements](#business-requirements)
+5. [Hypothesis and Validation](#hypothesis-and-validation)
+6. [The Rationale for Business Requirements Mapping](#the-rationale-for-business-requirements-mapping)
+7. [Machine Learning Business Case](#machine-learning-business-case)
+8. [Dashboard Design](#dashboard-design)
+9. [Unfixed Bugs](#unfixed-bugs)
+10. [Deployment](#deployment)
+11. [Main Data Analysis and Machine Learning Libraries](#main-data-analysis-and-machine-learning-libraries)
+12. [Credits](#credits)
+13. [Acknowledgements](#acknowledgements)
 
-## How to use this repo
+---
 
-1. Use this template to create your GitHub project repo
+## Introduction
 
-2. Log into the cloud-based IDE with your GitHub account.
+The **Heritage Housing Analysis** project is designed to assist a client who has inherited four houses in Ames, Iowa. The primary goal is to help the client make data-driven decisions by predicting the sale prices of these houses using advanced machine learning techniques. The project also aims to provide a detailed analysis of how various housing features influence sale prices through visualizations and insights. Finally, an interactive web application will be developed to allow users to explore the data and make real-time predictions.
 
-3. On your Dashboard, click on the Create button
+The project leverages data science methodologies and tools to analyze, predict, and visualize the housing market trends in Ames, Iowa. It provides a comprehensive solution that combines statistical analysis, machine learning, and user-friendly dashboards.
 
-4. Paste in the URL you copied from GitHub earlier
+---
 
-5. Click Create
+## How to Use This Repo
 
-6. Wait for the workspace to open. This can take a few minutes.
+This repository is structured to enable seamless collaboration and deployment. Follow these steps to get started:
 
-7. Open a new terminal and `pip3 install -r requirements.txt`
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/YOUR_REPO.git
+   ```
 
-11. Open the jupyter_notebooks directory and click on the notebook you want to open.
+2. **Set up your environment**:
+   Log into your cloud IDE or local environment.
 
-12. Click the kernel button and choose Python Environments.
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Note that the kernel says Python 3.12.2 as it inherits from the workspace so it will be Python-3.12.2 as installed by our template. To confirm this you can use `! python --version` in a notebook code cell.
+4. **Access Jupyter Notebooks**:
+   Open the `jupyter_notebooks` directory and select `Notebook_Template.ipynb` to start exploring the project.
 
-## Cloud IDE Reminders
+5. **Run the Streamlit dashboard locally**:
+   Launch the dashboard by running the following command:
+   ```bash
+   streamlit run app/app.py
+   ```
 
-To log into the Heroku toolbelt CLI:
+6. **Deploy to Heroku**:
+   Follow the deployment steps outlined in the [Deployment](#deployment) section to make the application accessible online.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In your Cloud IDE, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
+---
 
 ## Dataset Content
 
-* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). We then created a fictitious user story where predictive analytics can be applied in a real project in the workplace.
-* The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
+The dataset contains detailed records of housing features and their respective sale prices in Ames, Iowa. It includes attributes such as floor area, garage size, basement area, and other factors that influence property value. The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data).
 
-|Variable|Meaning|Units|
-|:----|:----|:----|
-|1stFlrSF|First Floor square feet|334 - 4692|
-|2ndFlrSF|Second-floor square feet|0 - 2065|
-|BedroomAbvGr|Bedrooms above grade (does NOT include basement bedrooms)|0 - 8|
-|BsmtExposure|Refers to walkout or garden level walls|Gd: Good Exposure; Av: Average Exposure; Mn: Minimum Exposure; No: No Exposure; None: No Basement|
-|BsmtFinType1|Rating of basement finished area|GLQ: Good Living Quarters; ALQ: Average Living Quarters; BLQ: Below Average Living Quarters; Rec: Average Rec Room; LwQ: Low Quality; Unf: Unfinshed; None: No Basement|
-|BsmtFinSF1|Type 1 finished square feet|0 - 5644|
-|BsmtUnfSF|Unfinished square feet of basement area|0 - 2336|
-|TotalBsmtSF|Total square feet of basement area|0 - 6110|
-|GarageArea|Size of garage in square feet|0 - 1418|
-|GarageFinish|Interior finish of the garage|Fin: Finished; RFn: Rough Finished; Unf: Unfinished; None: No Garage|
-|GarageYrBlt|Year garage was built|1900 - 2010|
-|GrLivArea|Above grade (ground) living area square feet|334 - 5642|
-|KitchenQual|Kitchen quality|Ex: Excellent; Gd: Good; TA: Typical/Average; Fa: Fair; Po: Poor|
-|LotArea| Lot size in square feet|1300 - 215245|
-|LotFrontage| Linear feet of street connected to property|21 - 313|
-|MasVnrArea|Masonry veneer area in square feet|0 - 1600|
-|EnclosedPorch|Enclosed porch area in square feet|0 - 286|
-|OpenPorchSF|Open porch area in square feet|0 - 547|
-|OverallCond|Rates the overall condition of the house|10: Very Excellent; 9: Excellent; 8: Very Good; 7: Good; 6: Above Average; 5: Average; 4: Below Average; 3: Fair; 2: Poor; 1: Very Poor|
-|OverallQual|Rates the overall material and finish of the house|10: Very Excellent; 9: Excellent; 8: Very Good; 7: Good; 6: Above Average; 5: Average; 4: Below Average; 3: Fair; 2: Poor; 1: Very Poor|
-|WoodDeckSF|Wood deck area in square feet|0 - 736|
-|YearBuilt|Original construction date|1872 - 2010|
-|YearRemodAdd|Remodel date (same as construction date if no remodelling or additions)|1950 - 2010|
-|SalePrice|Sale Price|34900 - 755000|
+### Key Features
+
+| Variable        | Description                                  | Units         |
+|------------------|----------------------------------------------|---------------|
+| `GrLivArea`     | Above-grade living area square feet          | 334 - 5642    |
+| `OverallQual`   | Overall material and finish quality          | 1 - 10        |
+| `GarageArea`    | Garage size in square feet                   | 0 - 1418      |
+| `YearBuilt`     | Original construction year                   | 1872 - 2010   |
+| `SalePrice`     | Final sale price of the property             | 34900 - 755000|
+
+Additional datasets:
+- `house_prices_records.csv`: Contains records of various housing attributes and their sale prices.
+- `inherited_houses.csv`: Details of the four inherited houses for price prediction.
+
+---
 
 ## Business Requirements
 
-As a good friend, you are requested by your friend, who has received an inheritance from a deceased great-grandfather located in Ames, Iowa, to  help in maximising the sales price for the inherited properties.
+The project addresses the following key business requirements:
 
-Although your friend has an excellent understanding of property prices in her own state and residential area, she fears that basing her estimates for property worth on her current knowledge might lead to inaccurate appraisals. What makes a house desirable and valuable where she comes from might not be the same in Ames, Iowa. She found a public dataset with house prices for Ames, Iowa, and will provide you with that.
+1. **Explore and visualize how house attributes correlate with sale prices**:
+   - The client wants to understand which features significantly impact property prices.
+   - Visualizations such as scatter plots and heatmaps will provide these insights.
 
-* 1 - The client is interested in discovering how the house attributes correlate with the sale price. Therefore, the client expects data visualisations of the correlated variables against the sale price to show that.
-* 2 - The client is interested in predicting the house sale price from her four inherited houses and any other house in Ames, Iowa.
+2. **Predict the sale prices of the inherited houses and other properties in Ames**:
+   - A machine learning regression model will be built to generate accurate predictions.
 
-## Hypothesis and how to validate?
+3. **Develop an interactive dashboard for visualization and predictions**:
+   - The dashboard will allow users to input property details and get real-time price predictions, along with interactive charts for data exploration.
 
-* List here your project hypothesis(es) and how you envision validating it (them).
+---
 
-## The rationale to map the business requirements to the Data Visualisations and ML tasks
+## Hypothesis and Validation
 
-* List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+### Hypothesis 1
+- **Hypothesis**: Larger houses with higher quality materials and finishes sell for higher prices.
+- **Validation**: Use correlation analysis and scatter plots to evaluate the relationship between `GrLivArea`, `OverallQual`, and `SalePrice`.
 
-## ML Business Case
+### Hypothesis 2
+- **Hypothesis**: Properties with larger garage areas and better conditions contribute positively to sale prices.
+- **Validation**: Perform regression analysis to measure the impact of `GarageArea` and `GarageFinish` on `SalePrice`.
 
-* In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
+### Hypothesis 3
+- **Hypothesis**: Older houses may sell for less unless remodeled.
+- **Validation**: Analyze the relationship between `YearBuilt`, `YearRemodAdd`, and `SalePrice` using visualizations.
+
+---
+
+## The Rationale for Business Requirements Mapping
+
+### Business Requirement 1: Data Visualization
+- Generate heatmaps to highlight correlations between features and sale prices.
+- Use scatter plots for visualizing relationships between individual features like `GrLivArea`, `OverallQual`, and `SalePrice`.
+
+### Business Requirement 2: Machine Learning Prediction
+- Develop a regression model to predict house prices.
+- Evaluate the model’s performance using R² and Mean Squared Error (MSE).
+
+### Business Requirement 3: Interactive Dashboard
+- Create an intuitive dashboard using Streamlit.
+- Include sections for data exploration, real-time predictions, and model evaluation.
+
+---
+
+## Machine Learning Business Case
+
+- **Objective**: Provide accurate sale price predictions for the inherited properties and any house in Ames.
+- **Problem Statement**: Predicting house prices is challenging due to the diverse factors affecting property values.
+- **Model Type**: Supervised regression model trained on labeled data.
+- **Success Metrics**:
+  - Achieve an R² score of 0.75 or higher.
+  - Minimize prediction errors using MSE.
+
+---
 
 ## Dashboard Design
 
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
-* Eventually, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but eventually you needed to use another plot type)
+The dashboard will consist of the following pages:
+
+1. **Project Summary**:
+   - Brief overview of the objectives, dataset, and key findings.
+
+2. **Exploration Page**:
+   - Interactive visualizations for analyzing correlations.
+   - Heatmaps and scatter plots to showcase insights.
+
+3. **Prediction Page**:
+   - Input form for property details.
+   - Real-time price predictions displayed dynamically.
+
+4. **Model Evaluation Page**:
+   - Performance metrics such as R² and MSE.
+   - Feature importance visualization for interpretability.
+
+---
 
 ## Unfixed Bugs
 
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
+- No known unfixed bugs at this stage.
+- Future iterations will address potential edge cases and user feedback from dashboard testing.
+
+---
 
 ## Deployment
 
-### Heroku
+### Local Deployment
 
-* The App live link is: <https://YOUR_APP_NAME.herokuapp.com/>
-* Set the .python-version Python version to a [Heroku-24](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
+1. Clone the repository and install dependencies:
+   ```bash
+   git clone https://github.com/YOUR_REPO.git
+   pip install -r requirements.txt
+   ```
 
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+2. Run the Streamlit app locally:
+   ```bash
+   streamlit run app/app.py
+   ```
+
+### Heroku Deployment
+
+1. Log into Heroku and create a new app:
+   ```bash
+   heroku login
+   heroku create
+   ```
+
+2. Deploy the app to Heroku:
+   ```bash
+   git push heroku main
+   ```
+
+3. Ensure the `.python-version` file is set to a Heroku-supported Python version.
+
+---
 
 ## Main Data Analysis and Machine Learning Libraries
 
-* Here you should list the libraries you used in the project and provide example(s) of how you used these libraries.
+- **Pandas**: Used for data manipulation and preprocessing.
+- **Matplotlib/Seaborn**: Used for creating detailed visualizations.
+- **Scikit-learn**: Used for machine learning model development and evaluation.
+- **Streamlit**: Used for building the interactive web application.
+
+---
 
 ## Credits
 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism.
-* You can break the credits section up into Content and Media, depending on what you have included in your project.
-
 ### Content
 
-* The text for the Home page was taken from Wikipedia Article A
-* Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-* The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+- The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data).
 
 ### Media
 
-* The photos used on the home and sign-up page are from This Open Source site
-* The images used for the gallery page were taken from this other open-source site
+- Icons and dashboard assets are sourced from [Font Awesome](https://fontawesome.com/).
+- The banner image is custom-designed using [Canva](https://www.canva.com/).
 
-## Acknowledgements (optional)
+---
 
+## Acknowledgements
 
-* In case you would like to thank the people that provided support through this project.
+- Special thanks to the Code Institute for providing guidance and resources for this project.
+- Appreciation to mentors and peers for valuable feedback and support.
 
+---
