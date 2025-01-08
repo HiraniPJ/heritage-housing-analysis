@@ -1,50 +1,22 @@
 import streamlit as st
-from PIL import Image
+from app_pages.multipage import MultiPage
+from app_pages.page_summary import page_summary_body
+from app_pages.page_data_visualization import page_data_visualization_body
+from app_pages.page_modeling import page_modeling_body
+from app_pages.page_data_loading import page_data_loading_body
+from app_pages.page_hypothesis import page_hypothesis_body
+from app_pages.page_reporting import page_reporting_body
 
-# Define output directory for images
-output_dir = 'outputs/data_visualization'
+# Create an instance of the app
+app = MultiPage(app_name="Heritage Housing Analysis")
 
-# Page title
-st.title("Heritage Housing Analysis - Data Visualization")
+# Add pages
+app.add_page("Summary", page_summary_body)
+app.add_page("Data Loading", page_data_loading_body)
+app.add_page("Data Visualization", page_data_visualization_body)
+app.add_page("Modeling and Evaluation", page_modeling_body)
+app.add_page("Hypothesis and Validation", page_hypothesis_body)
+app.add_page("Feedback / Reporting", page_reporting_body)
 
-# Correlation Heatmap
-st.header("Correlation Heatmap")
-heatmap_path = f"{output_dir}/correlation_heatmap.png"
-try:
-    heatmap_image = Image.open(heatmap_path)
-    st.image(heatmap_image, caption="Correlation Heatmap", use_container_width=True)
-except FileNotFoundError:
-    st.error(f"Correlation Heatmap not found. Please ensure it exists at {heatmap_path}.")
-
-# Box Plots for Key Features
-st.header("Box Plots for Key Features")
-boxplot_files = {
-    "GrLivArea vs SalePrice": f"{output_dir}/GrLivArea_vs_SalePrice.png",
-    "OverallQual vs SalePrice": f"{output_dir}/OverallQual_vs_SalePrice.png",
-    "GarageArea vs SalePrice": f"{output_dir}/GarageArea_vs_SalePrice.png"
-}
-
-for title, path in boxplot_files.items():
-    st.subheader(title)
-    try:
-        boxplot_image = Image.open(path)
-        st.image(boxplot_image, caption=title, use_container_width=True)
-    except FileNotFoundError:
-        st.error(f"{title} not found. Please ensure it exists at {path}.")
-
-# Distribution Plots for Numeric Features
-st.header("Distribution Plots for Numeric Features")
-distribution_files = {
-    "SalePrice Distribution": f"{output_dir}/saleprice_distribution.png",
-    "GrLivArea Distribution": f"{output_dir}/GrLivArea_distribution.png",
-    "GarageArea Distribution": f"{output_dir}/GarageArea_distribution.png",
-    "TotalBsmtSF Distribution": f"{output_dir}/TotalBsmtSF_distribution.png"
-}
-
-for title, path in distribution_files.items():
-    st.subheader(title)
-    try:
-        dist_image = Image.open(path)
-        st.image(dist_image, caption=title, use_container_width=True)
-    except FileNotFoundError:
-        st.error(f"{title} not found. Please ensure it exists at {path}.")
+# Run the app
+app.run()
