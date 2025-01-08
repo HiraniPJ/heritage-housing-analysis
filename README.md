@@ -1,5 +1,3 @@
-![Banner](readme_images/banner.png)
-
 # Heritage Housing Analysis
 
 ## Table of Contents
@@ -22,6 +20,10 @@
 16. [Acknowledgements](#acknowledgements)
 
 ---
+
+### Deployed version at [Heritage-Housing-Analysis](https://heritage-housing-analysis-347c30b4142b.herokuapp.com/)
+
+--
 
 ## Introduction
 
