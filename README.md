@@ -315,7 +315,6 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 ### Media
 
 - Icons and dashboard assets are sourced from [Font Awesome](https://fontawesome.com/).
-- The banner image is custom-designed using [Canva](https://www.canva.com/).
 
 ---
 
