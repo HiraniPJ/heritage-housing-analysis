@@ -21,3 +21,7 @@ class MultiPage:
         st.sidebar.title(self.app_name)
         page = st.sidebar.radio("Navigation", self.pages, format_func=lambda page: page["title"])
         page["function"]()
+
+#multipage app instance
+app = MultiPage("Heritage Housing Analysis")
+
