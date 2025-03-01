@@ -27,7 +27,6 @@ def page_prediction_body():
 
     # Predict button
     if st.button("Predict House Price"):
-        input_df = pd.DataFrame([[GrLivArea, OverallQual, GarageArea, TotalBsmtSF]],
-                                columns=['GrLivArea', 'OverallQual', 'GarageArea', 'TotalBsmtSF'])
-        prediction = model.predict(input_df)[0]
+        prediction = model.predict(input_features)
+        predicted_price = np.round(prediction[0], 2)
         st.success(f"✅ Predicted House Price: ${prediction:,.2f}")
