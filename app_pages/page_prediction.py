@@ -13,12 +13,20 @@ def page_prediction_body():
 
     # User inputs
     gr_liv_area = st.number_input("Above-ground Living Area (sq ft)", min_value=300, max_value=6000, value=1500)
-    overall_qual = st.slider("Overall Quality (1-10)", 1, 10, 5)
     garage_area = st.number_input("Garage Area (sq ft)", min_value=0, max_value=1500, value=500)
+    overall_qual = st.slider("Overall Quality (1-10)", 1, 10, 5)
     total_bsmt_sf = st.number_input("Total Basement Area (sq ft)", min_value=0, max_value=6000, value=800)
     
+    # Prepare input data for prediction
+    input_features = pd.DataFrame({
+        'GrLivArea': [gr_liv_area],
+        'GarageArea':[garage_area],
+        'OverallQual': [overall_qual],
+        'TotalBsmtSF': [total_bsmt_sf]
+    })
+
     # Predict button
-    if st.button("Predict Price"):
+    if st.button("Predict House Price"):
         input_df = pd.DataFrame([[GrLivArea, OverallQual, GarageArea, TotalBsmtSF]],
                                 columns=['GrLivArea', 'OverallQual', 'GarageArea', 'TotalBsmtSF'])
         prediction = model.predict(input_df)[0]
