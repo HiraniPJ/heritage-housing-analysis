@@ -16,24 +16,25 @@ def page_modeling_body():
     st.title("Modeling and Evaluation")
     st.info("This page provides insights into the machine learning model performance.")
 
-    # Model Performance Metrics
-    st.header("Model Performance Metrics")
-
-    # Display the Actual vs Predicted Comparison Plot
     try:
-        st.image("outputs/model_actual_vs_predicted.png", caption="Actual vs Predicted Comparison", use_container_width=True)
-    except FileNotFoundError:
-        st.error("Actual vs Predicted Comparison plot not found. Please ensure it exists at 'outputs/model_actual_vs_predicted.png'.")
+        with open("outputs/model_metrics.json", "r") as f:
+            metrics = json.load(f)
 
-    # Load and Display Predictions CSV
-    predictions_path = "outputs/inherited_houses_with_predictions.csv"
-    try:
-        predictions_df = pd.read_csv(predictions_path)
-        st.subheader("Predictions Overview")
-        st.dataframe(predictions_df)
-    except FileNotFoundError:
-        st.error(f"Predictions file not found: {predictions_path}")
+        # Model Performance Metrics
+        st.subheader("Model Performance Metrics")
+        st.write(f"**R² Score:** {metrics['R2 Score']}")
+        st.write(f"**Mean Absolute Error (MAE):** {metrics['Mean Absolute Error (MAE)']}")
+        st.write(f"**Root Mean Squared Error (RMSE):** {metrics['Root Mean Squared Error (RMSE)']}")
 
-    # Display Additional Insights (if applicable)
-    st.subheader("Additional Insights")
-    st.write("This section can include other model metrics, such as RMSE, MAE, or R-squared values, if calculated.")
+        # Interpretation
+        st.markdown("#### **Interpretation of Results:**")
+        if metrics["R2 Score"] >= 0.75:
+            st.success("✅ The model has a strong predictive ability.")
+        elif metrics["R2 Score"] >= 0.5:
+            st.warning("⚠️ The model has moderate predictive power but can be improved.")
+        else:
+            st.error("❌ The model does not generalize well. Consider improving feature selection or hyperparameter tuning.")
+
+    except FileNotFoundError:
+        st.error("Model evaluation results not found. Please run model training first.")
+    
