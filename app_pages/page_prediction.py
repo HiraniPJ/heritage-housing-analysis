@@ -25,10 +25,6 @@ def page_prediction_body():
     # column order matches the model's training
     input_df = input_df[selected_features]
 
-    # Debugging: Print feature names to verify
-    st.write("Expected Features:", selected_features)
-    st.write("Input Features:", list(input_df.columns))
-
     # Predict button
     if st.button("Predict House Price"):
         prediction = model.predict(input_df)
