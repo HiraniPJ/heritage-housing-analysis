@@ -1,5 +1,7 @@
 import streamlit as st
 from PIL import Image
+import pandas as pd
+import plotly.express as px
 
 def page_data_visualization_body():
     st.title("Data Visualization")
@@ -30,7 +32,7 @@ def page_data_visualization_body():
         except FileNotFoundError:
             st.error(f"{title} not found at {path}.")
 
-        # Box Plots for Key Features
+    # Box Plots for Key Features
     st.header("Box Plots for Key Features")
     boxplot_files = {
         "GrLivArea vs SalePrice": f"{output_dir}/GrLivArea_vs_SalePrice.png",
@@ -45,21 +47,51 @@ def page_data_visualization_body():
             st.image(boxplot_image, caption=title, use_container_width=True)
         except FileNotFoundError:
             st.error(f"{title} not found. Please ensure it exists at {path}.")
+    
+    # Load dataset for interactive charts
+    data_path = "data/house_prices_records.csv"
+    try:
+        house_prices_df = pd.read_csv(data_path)
+    except FileNotFoundError:
+        st.error(f"Error: {data_path} not found.")
+        return   
 
-    # Distribution Plots for Numeric Features
-    st.header("Distribution Plots for Numeric Features")
-    distribution_files = {
-        "SalePrice Distribution": f"{output_dir}/saleprice_distribution.png",
-        "GrLivArea Distribution": f"{output_dir}/GrLivArea_distribution.png",
-        "GarageArea Distribution": f"{output_dir}/GarageArea_distribution.png",
-        "TotalBsmtSF Distribution": f"{output_dir}/TotalBsmtSF_distribution.png"
-    }
+    # Interactive Sale Price Distribution
+    st.header("Sale Price Distribution (Interactive)")
+    fig_hist = px.histogram(
+        house_prices_df,
+        x="SalePrice",
+        nbins=50,
+        title="Distribution of Sale Prices"
+    )
+    st.plotly_chart(fig_hist)
 
-    for title, path in distribution_files.items():
-        st.subheader(title)
-        try:
-            dist_image = Image.open(path)
-            st.image(dist_image, caption=title, use_container_width=True)
-        except FileNotFoundError:
-            st.error(f"{title} not found. Please ensure it exists at {path}.")
+    #Interactive Living Area vs. Sale Price
+    st.header("Living Area vs Sale Price (Interactive)")
+    fig_scatter_living = px.scatter(
+        house_prices_df,
+        x="GrLivArea",
+        y="SalePrice",
+        color="OverallQual",
+        size="GarageArea",
+        hover_data=["YearBuilt"],
+        title="Living Area vs Sale Price (Colored by Overall Quality)"
+    )
+    st.plotly_chart(fig_scatter_living)
 
+    #Interactive Garage Area vs. Sale Price
+    st.header("Garage Area vs Sale Price (Interactive)")
+    fig_scatter_garage = px.scatter(
+        house_prices_df,
+        x="GarageArea",
+        y="SalePrice",
+        color="OverallQual",
+        size="GrLivArea",
+        hover_data=["YearBuilt"],
+        title="Garage Area vs Sale Price (Colored by Overall Quality)"
+    )
+    st.plotly_chart(fig_scatter_garage)
+
+    # Summary Statistics
+    st.header("Summary Statistics")
+    st.write(house_prices_df.describe())
