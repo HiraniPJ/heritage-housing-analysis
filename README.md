@@ -37,10 +37,13 @@ The final product includes a deployed web application that allows users to uploa
 
 The project fulfills the following key business requirements:
 
-1. Visualize the relationship between house features and sale prices.
-2. Predict the sale prices of the inherited houses and others in Ames.
-3. Provide an interactive dashboard for users to explore insights and make predictions.
-4. Offer actionable insights for property valuation and improvement.
+1. **Data Exploration & Visualization:** Identify and showcase the relationships between property features and sale prices through various plots and charts.
+
+2. **Price Prediction:** Develop a machine learning model capable of predicting house prices with a high degree of accuracy.
+
+3. **Interactive Dashboard:** Provide an easy-to-use web application for real-time property price estimation and data exploration.
+
+4. **Actionable Insights:** Offer strategic recommendations for property improvement based on key influencing factors.
 
 ---
 
@@ -82,7 +85,7 @@ The dataset is sourced from the **Ames Housing Dataset**, containing records of 
 
 ### Hypothesis 1
 - **Larger houses with better quality materials sell for higher prices.**
-  - **Validation**: Correlation analysis between `GrLivArea`, `OverallQual`, and `SalePrice`.
+  - **Validation**: Confirmed using correlation heatmaps and scatter plots between `GrLivArea`, `OverallQual`, and `SalePrice`.
 
 ### Hypothesis 2
 - **Properties with recent renovations have higher sale prices.**
@@ -93,22 +96,31 @@ The dataset is sourced from the **Ames Housing Dataset**, containing records of 
   - **Validation**: Feature importance analysis from the regression model.
 
 ### Visuals
-- Heatmaps, scatter plots, and box plots were used to validate these hypotheses.
-- Add a placeholder for images: `![Heatmap Example](readme_images/heatmap.png)`
+- **Correlation Heatmaps** to understand feature relationships.
+- **Box Plots** and **Scatter Plots** for feature-price impact assessment.
+- **Distribution Plots** for analyzing price variations.
+
 
 ---
 
 ## The Model
 
-The machine learning model used for this project is a **linear regression model** with the following details:
+## Machine Learning Model
+
+The project implements a Linear Regression Model for predicting house prices. The model was chosen for its interpretability and performance on structured housing data.
+
+### Key Model Details:
 
 1. **Features Used**:
-   - `GrLivArea`, `OverallQual`, `GarageArea`, `YearBuilt`.
+   - `GrLivArea`, `OverallQual`, `GarageArea`, `TotalBsmtSF`.
 2. **Training and Testing Split**:
    - 80% training, 20% testing.
 3. **Performance Metrics**:
-   - R² Score: **0.87**
-   - Mean Squared Error (MSE): Low
+   - **Train R² Score:** 0.745
+   - **Test R² Score:** 0.791
+   - **Mean Absolute Error (MAE):** $25,055.30
+   - **Root Mean Squared Error (RMSE):** $40,046.56
+   - **Cross-Validation R² Mean:** 0.735
 
 ### Code Snippet: Model Training
 ```python
@@ -122,21 +134,22 @@ predictions = model.predict(X_test)
 ## Implementation of Business Requirements
 
 1. **Visualizations**:
-   - Created scatter plots and heatmaps to show the relationship between housing features like `GrLivArea`, `OverallQual`, and `SalePrice`.
-   - Demonstrated key trends in the dataset using box plots and distribution charts.
+   - Generated heatmaps, scatter plots, and box plots to illustrate key feature relationships.
+   - Created interactive Plotly charts to enhance user exploration of data.
+     
+2. **Prediction Functionality**:
+   - Developed a streamlit-based interactive prediction page where users can input house details and receive estimated sale prices.
+   - Ensured the model performed well within acceptable error margins.
 
-2. **Prediction**:
-   - Developed a regression model for predicting house prices with high accuracy.
-   - Ensured the predictions met the client's expectations for actionable insights.
+3. **Interactive Dashboard**:
+   - Built a user-friendly Streamlit application that allows:
+     - Price predictions based on house attributes.
+     - Visual data exploration with both static and interactive charts.
+     - Evaluation of the machine learning model’s accuracy and performance.
 
-3. **Dashboard**:
-   - Built an interactive web application using Streamlit to allow users to explore data and generate predictions.
-
-4. **Insights**:
-   - Provided actionable insights into improving property values based on feature importance and prediction results.
-
-### Example Insights Visualization
-`![Insights Visualization](readme_images/insights_visualization.png)`
+4. **Enhanced Insights**:
+   - Provided clear insights into how different factors contribute to house pricing.
+   - Suggested potential improvements and renovations to maximize property value.
 
 ---
 
@@ -220,8 +233,7 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 
 ### Business Requirement 1:
 - **Visualize the relationship between house features and sale prices.**
-  - **Outcome**: Achieved using scatter plots and heatmaps. Example below:
-    `![Scatter Plot](readme_images/scatter_plot.png)`
+  - **Outcome**: Achieved using scatter plots and heatmaps. 
 
 ### Business Requirement 2:
 - **Predict the sale prices of inherited houses.**
@@ -235,19 +247,20 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 
 ## Improvements and Future Plans
 
-1. **Model Performance**:
-   - Explore advanced regression techniques for better accuracy.
-   - Integrate additional features to improve model interpretability.
+1. **Enhancing Model Accuracy:**:
+   - Fine-tune hyperparameters to improve performance.
+   - Experiment with advanced machine learning models such as Random Forests and Gradient Boosting.
 
-2. **UI/UX Enhancements**:
-   - Improve dashboard navigation and visual appeal.
+2. **Additional Features for User Interaction**:
+   - Integrate automated recommendations for improving property value.
+   - Allow users to compare multiple house predictions side by side.
 
-3. **Feature Expansion**:
-   - Add trend analysis for future property market forecasting.
-   - Provide renovation recommendations based on model insights.
+3. **Expanding Data Sources:**:
+   - Incorporate external housing market trends to refine predictions.
 
-4. **Long-Term Goals**:
-   - Incorporate machine learning techniques for advanced property valuation scenarios.
+4. **Deployment & Optimization:**:
+   - Optimize model loading for faster real-time predictions.
+   - Deploy on cloud-based platforms for scalability.
 
 ---
 
@@ -299,10 +312,13 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 
 ## Technologies Used
 
-- **Pandas**: Used for data manipulation and preprocessing.
-- **Matplotlib/Seaborn**: Used for creating detailed visualizations.
+- **Python**: Core programming language for data analysis and model building.
+- **Pandas & NumPy**: Data manipulation and numerical computations.
+- **Matplotlib/Seaborn**: Used for creating static data visualizations.
 - **Scikit-learn**: Used for machine learning model development and evaluation.
 - **Streamlit**: Used for building the interactive web application.
+- **Plotly**: Interactive data visualization.
+- **Joblib**: Model persistence and storage.
 
 ---
 
