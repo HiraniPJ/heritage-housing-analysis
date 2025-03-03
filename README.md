@@ -9,7 +9,7 @@
 5. [Hypothesis and Validation](#hypothesis-and-validation)
 6. [The Model](#the-model)
 7. [Implementation of Business Requirements](#implementation-of-business-requirements)
-8. [Dashboard Design](#dashboard-design)
+8. [Design and Testing](#design-and-testing)
 9. [CRISP-DM Process](#crisp-dm-process)
 10. [Requirements Evaluation](#requirements-evaluation)
 11. [Improvements and Future Plans](#improvements-and-future-plans)
@@ -153,54 +153,73 @@ predictions = model.predict(X_test)
 
 ---
 
-## Dashboard Design
+## Design and Testing
 
 The dashboard is designed to be intuitive and user-friendly, with the following sections:
 
 1. **Project Summary**:
    - Overview of the objectives, key findings, and project details.
-![image](https://github.com/user-attachments/assets/1d2136c7-001d-43f5-9d06-aa909dbe5da3)
+    ![image](https://github.com/user-attachments/assets/013845e0-8b3f-4ae7-a888-cb13e168d252)
 
 
 2. **Data Exploration**:
-   - Interactive visualizations to explore the dataset.
-  ![image](https://github.com/user-attachments/assets/dae24a6f-50ae-48bb-b412-1e61377ecfa8)
-
-   - Heatmaps and feature distribution charts.
-![image](https://github.com/user-attachments/assets/5230b485-53ae-4cda-9e21-74d2e33ce687)
-
-    - Scatter Plots
-![image](https://github.com/user-attachments/assets/c92a20a9-9655-420e-a4dc-f39a1ad3cdeb)
-![image](https://github.com/user-attachments/assets/1d027451-c5c5-4e1b-b9ef-7e6827c2231e)
-![image](https://github.com/user-attachments/assets/98e601d7-8db2-4c9b-8d5f-9cb112d82497)
-
-   - Box Plots for Key Features
-![image](https://github.com/user-attachments/assets/e44581e7-08fd-4bad-a53c-0de9ca90508e)
-![image](https://github.com/user-attachments/assets/d6480b0e-6968-4bda-9fef-a28e82a56507)
-![image](https://github.com/user-attachments/assets/16b09e26-7cee-43a4-bb03-0ed6bbba56db)
-
-   - Distribution Plots for Numeric Features
-![image](https://github.com/user-attachments/assets/f977a1d7-40d7-4c17-a064-1df73b4b303b)
-![image](https://github.com/user-attachments/assets/0f643853-247c-4c6e-aae3-22fe3264289e)
-![image](https://github.com/user-attachments/assets/9f298030-8986-4e4d-a500-7ae5b252e7c8)
-![image](https://github.com/user-attachments/assets/d4f5c44b-249f-4888-8fb8-d54fa135909c)
+   - **Interactive visualizations** to explore the dataset.
+     
+    ![image](https://github.com/user-attachments/assets/6174a873-b939-4d06-95b8-4ca5d9a4a2ba)
 
 
-3. **Prediction Page and Model Evaluation**:
-   - Input form for users to enter house attributes and receive price predictions in real-time.
-   - Display confidence levels for each prediction.
-   - 
-![image](https://github.com/user-attachments/assets/c97deca3-235a-458e-9a91-7ea0f1299271)
-![image](https://github.com/user-attachments/assets/8e414b1c-0988-495a-aebb-5767f3739f7e)
+   - **Heatmaps** and feature distribution charts.
+     
+    ![image](https://github.com/user-attachments/assets/06509d54-e579-490c-897a-c90b431a85fe)
 
 
-4. **Hypotheses and Validation**:
+  - **Scatter Plots**
+    
+    ![image](https://github.com/user-attachments/assets/c92a20a9-9655-420e-a4dc-f39a1ad3cdeb)
+    ![image](https://github.com/user-attachments/assets/1d027451-c5c5-4e1b-b9ef-7e6827c2231e)
+    ![image](https://github.com/user-attachments/assets/98e601d7-8db2-4c9b-8d5f-9cb112d82497)
 
-![image](https://github.com/user-attachments/assets/f4fdd759-2d4c-4720-9531-8b0580286cf6)
+
+  - **Box Plots for Key Features**
+    
+    ![image](https://github.com/user-attachments/assets/e44581e7-08fd-4bad-a53c-0de9ca90508e)
+    ![image](https://github.com/user-attachments/assets/d6480b0e-6968-4bda-9fef-a28e82a56507)
+    ![image](https://github.com/user-attachments/assets/16b09e26-7cee-43a4-bb03-0ed6bbba56db)
+
+   - **Sale Price Distribution (Interactive)**
+    ![image](https://github.com/user-attachments/assets/0238da5f-d1ff-4d02-acf4-4b01de661f10)
+
+   - **Living Area vs Sale Price (Interactive)**
+    ![image](https://github.com/user-attachments/assets/84741835-9621-47b0-b636-444d3622c5e1)
+
+   - **Garage Area vs Sale Price (Interactive)**
+    ![image](https://github.com/user-attachments/assets/4ed4cbb9-1aa5-42bc-b227-16a6c7384fb1)
 
 
-5. **Feedback and Reporting**
-![image](https://github.com/user-attachments/assets/2c538eea-1d3f-4170-a59b-d1be657f04df)
+4. **Model Evaluation**:
+   
+    ![image](https://github.com/user-attachments/assets/c20310db-7520-466e-a9a3-743515fb64fe)
+
+5. **Prediction Page Tested**
+
+    ![image](https://github.com/user-attachments/assets/518e89fb-73b5-478d-b7fa-2d236d7203c1)
+
+  - **Residual & Cross-Validation Score**
+    
+    ![image](https://github.com/user-attachments/assets/edf314ef-364a-4a09-93ad-d9f604ea2069)
+    
+    ![image](https://github.com/user-attachments/assets/b6d316cc-70f7-41c0-91d2-23c998897009)
+    ![image](https://github.com/user-attachments/assets/094ffc28-6697-4cc9-ac31-488bc07081a0)
+    
+
+6. **Hypotheses and Validation**:
+
+    ![image](https://github.com/user-attachments/assets/f4fdd759-2d4c-4720-9531-8b0580286cf6)
+
+
+7. **Feedback and Reporting**
+   
+    ![image](https://github.com/user-attachments/assets/be286864-4c7f-441d-8e51-770c813f6899)
 
 ---
 
@@ -273,8 +292,15 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 2. **Heroku Deployment**:
    - Fixed slug size issues by optimizing dependencies.
 
-### Unresolved Bugs
-- **None reported at this stage.**
+### Resolved Bugs
+- **Modeling and Evaluation Page Error.**
+![image](https://github.com/user-attachments/assets/c089d47b-b213-42d6-a41e-bc650fa0b19d)
+
+**Error Handling**
+- Fixed KeyError: Replaced "R² Score" with "Test R²" as the correct metric key from model_metrics.json.
+- Added Robust Key Checking: Prevents app crashes by verifying metric availability before accessing values.
+- Displayed Cross-Validation Metrics: Now includes "Cross-Validation Mean R²" and "Cross-Validation Std Dev" for better model evaluation.
+- Improved Interpretation Logic: Uses "Test R²" to classify model performance (Strong/Moderate/Poor).
 
 ---
 
