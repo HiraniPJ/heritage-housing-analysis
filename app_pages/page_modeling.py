@@ -1,6 +1,4 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
 import json
 import os
 
@@ -73,10 +71,9 @@ def page_modeling_body():
     
     with st.expander("What do these metrics mean?"):
         st.markdown("""
-        - **R²**: % of price variation explained by the model (closer to 1 is better).
-        - **MAE**: Typical absolute error in dollars (lower is better).
-        - **RMSE**: Error with extra penalty for large mistakes (lower is better).
-        - **CV Mean/Std**: Cross-validation stability across folds (closer CV mean to Test R² + lower std is better).
+        - A Test R² of ~0.79 indicates the model explains a large share of price variance on unseen homes.
+        - MAE (~$25k) and RMSE (~$40k) set realistic error bounds for planning and negotiation.
+        - CV mean R² close to Test R² with low variance suggests **robust generalization**.
         """)
 
     # 4) Diagnostic plots -------------
