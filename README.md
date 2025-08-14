@@ -7,18 +7,18 @@
 3. [Project Objectives](#project-objectives-and-success-criteria)
 4. [User Stories](#user-stories)
 5. [Dataset Content](#dataset-content)
-6. [Hypothesis and Validation](#hypothesis-and-validation)
 7. [The Model](#the-model)
-8. [Implementation of Business Requirements](#implementation-of-business-requirements)
-9. [Design and Testing](#design-and-testing)
-10. [CRISP-DM Process](#crisp-dm-process)
-11. [Requirements Evaluation](#requirements-evaluation)
-12. [Improvements and Future Plans](#improvements-and-future-plans)
-13. [Bugs](#bugs)
-14. [Deployment](#deployment)
-15. [Technologies Used](#technologies-used)
-16. [Credits](#credits)
-17. [Acknowledgements](#acknowledgements)
+8. [Hypothesis and Validation](#hypothesis-and-validation)
+9. [Implementation of Business Requirements](#implementation-of-business-requirements)
+10. [Design and Testing](#design-and-testing)
+11. [CRISP-DM Process](#crisp-dm-process)
+12. [Requirements Evaluation](#requirements-evaluation)
+13. [Improvements and Future Plans](#improvements-and-future-plans)
+14. [Bugs](#bugs)
+15. [Deployment](#deployment)
+16. [Technologies Used](#technologies-used)
+17. [Credits](#credits)
+18. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -120,6 +120,36 @@ The dataset is sourced from the **Ames Housing Dataset**, containing records of 
 
 ---
 
+## The Model
+
+## Machine Learning Model
+
+The project implements a Linear Regression Model for predicting house prices. The model was chosen for its interpretability and performance on structured housing data.
+
+### Key Model Details:
+
+1. **Features Used**:
+   - `GrLivArea`, `OverallQual`, `GarageArea`, `TotalBsmtSF`.
+2. **Training and Testing Split**:
+   - **Split strategy:** 80% train / 20% test  
+   - **Cross-validation:** 5-fold K-Fold on the full feature set  
+   - **Why this matters:** The **Test R²** reflects out-of-sample generalization, and the **CV R² (mean ± std)** demonstrates robustness across folds.
+3. **Performance Metrics**:
+   - **Train R² Score:** 0.745
+   - **Test R² Score:** 0.791
+   - **Mean Absolute Error (MAE):** $25,055.30
+   - **Root Mean Squared Error (RMSE):** $40,046.56
+   - **Cross-Validation R² Mean:** 0.735 (5-fold), **Std Dev:** 0.072
+
+### Code Snippet: Model Training
+```python
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+```
+---
+
 ## Hypothesis and Validation
 
 ### Hypothesis 1 — Size & Quality Premium
@@ -142,35 +172,6 @@ The dataset is sourced from the **Ames Housing Dataset**, containing records of 
 - **Box Plots** and **Scatter Plots** for feature-price impact assessment.
 - **Distribution Plots** for analyzing price variations.
 
-
----
-
-## The Model
-
-## Machine Learning Model
-
-The project implements a Linear Regression Model for predicting house prices. The model was chosen for its interpretability and performance on structured housing data.
-
-### Key Model Details:
-
-1. **Features Used**:
-   - `GrLivArea`, `OverallQual`, `GarageArea`, `TotalBsmtSF`.
-2. **Training and Testing Split**:
-   - 80% training, 20% testing.
-3. **Performance Metrics**:
-   - **Train R² Score:** 0.745
-   - **Test R² Score:** 0.791
-   - **Mean Absolute Error (MAE):** $25,055.30
-   - **Root Mean Squared Error (RMSE):** $40,046.56
-   - **Cross-Validation R² Mean:** 0.735 (5-fold), **Std Dev:** 0.072
-
-### Code Snippet: Model Training
-```python
-from sklearn.linear_model import LinearRegression
-model = LinearRegression()
-model.fit(X_train, y_train)
-predictions = model.predict(X_test)
-```
 ---
 
 ## Implementation of Business Requirements
@@ -292,17 +293,21 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 
 ## Requirements Evaluation
 
-### Business Requirement 1:
+### Business Requirement 1: **Data Exploration & Visualization**
 - Visualize the relationship between house features and sale prices.
-  - **Outcome**: Achieved using scatter plots and heatmaps. 
+  - **Success criteria:** At least three feature–price visualizations with a short interpretation explaining what each means for pricing decisions. 
 
-### Business Requirement 2:
+### Business Requirement 2: **Price Prediction**
 - Predict the sale prices of inherited houses.
-  - **Outcome**: Delivered accurate price predictions with a Test R² of 0.791 (MAE ≈ $25k; RMSE ≈ $40k).
+  - **Outcome**: Delivered accurate price predictions with **Train R²**, **Test R²**, **MAE**, **RMSE**, and **5-fold CV R² (mean ± std)** on the app’s “Modeling & Evaluation” page.
 
-### Business Requirement 3:
+### Business Requirement 3: **Interactive Dashboard** 
 - Provide an interactive dashboard.
-  - **Outcome**: Built a Streamlit app for real-time predictions and data exploration.
+  - **Success criteria:** Prediction page loads the trained model successfully and returns a price with validation of feature inputs.
+
+### Business Requirement 4: **Actionable Insights**
+- Offer strategic recommendations backed by data (e.g., “improving OverallQual has a stronger marginal impact than increasing GarageArea”).
+  - **Success criteria:** A short, evidence-based conclusions section that cites the model coefficients/plots and the evaluation metrics.
 
 ---
 
