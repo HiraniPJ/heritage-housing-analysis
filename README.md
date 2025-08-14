@@ -293,15 +293,15 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 ## Requirements Evaluation
 
 ### Business Requirement 1:
-- **Visualize the relationship between house features and sale prices.**
+- Visualize the relationship between house features and sale prices.
   - **Outcome**: Achieved using scatter plots and heatmaps. 
 
 ### Business Requirement 2:
-- **Predict the sale prices of inherited houses.**
-  - **Outcome**: Delivered accurate price predictions with an R² score of 0.87.
+- Predict the sale prices of inherited houses.
+  - **Outcome**: Delivered accurate price predictions with a Test R² of 0.791 (MAE ≈ $25k; RMSE ≈ $40k).
 
 ### Business Requirement 3:
-- **Provide an interactive dashboard.**
+- Provide an interactive dashboard.
   - **Outcome**: Built a Streamlit app for real-time predictions and data exploration.
 
 ---
