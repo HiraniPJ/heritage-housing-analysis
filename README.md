@@ -68,19 +68,19 @@ The project fulfills the following key client's business requirements:
   
     _Success if:_ Test R² ≥ 0.75 and cross-validation R² is close to test R² (low variance).
   
-    _Result:_
+    **_Result:_** Test R² = 0.791, CV mean R² = 0.735, CV std = 0.072 → **Met.**
  	
 -	**O2. Explain value drivers (Req 1 & 4).**
   
     _Success if:_ Visualizations and coefficients consistently show positive relationships for size/quality and the app exposes these relationships.
   
-    _Result:_ 
+    **_Result:_** GrLivArea and OverallQual strongly positive; TotalBsmtSF and GarageArea positive with smaller effects → **Met.**
 
 -	**O3. Enable scenario testing (Req 3).**
   
     _Success if:_ The app accepts user inputs for the model’s features and returns a prediction instantly, with validation to avoid input mismatch.
   
-    _Result:_
+    **_Result:_** Streamlit Prediction page implemented and validated → **Met.**
 
 ---
 
@@ -112,6 +112,8 @@ The dataset is sourced from the **Ames Housing Dataset**, containing records of 
 | `YearBuilt`     | Year the house was built                 | Year     |
 | `SalePrice`     | Sale price of the property               | USD      |
 
+**Split used for modelling: 80% train / 20% test** (random_state=42). 
+
 ### Additional Datasets
 1. **Inherited Houses Dataset**: Data for the four inherited properties.
 2. **Training Data**: Historical housing data for training the predictive model.
@@ -120,17 +122,20 @@ The dataset is sourced from the **Ames Housing Dataset**, containing records of 
 
 ## Hypothesis and Validation
 
-### Hypothesis 1
-- **Larger houses with better quality materials sell for higher prices.**
-  - **Validation**: Confirmed using correlation heatmaps and scatter plots between `GrLivArea`, `OverallQual`, and `SalePrice`.
+### Hypothesis 1 — Size & Quality Premium
+-  _Hypothesis:_ Larger houses with better quality materials sell for higher prices.
+-  _Validation:_ Confirmed using correlation heatmaps and scatter plots between `GrLivArea`, `OverallQual`, and `SalePrice`. Coefficients from the linear model are positive and material.
+-  _Outcome:_ **Supported** (Objective O2 met).
 
-### Hypothesis 2
-- **Properties with recent renovations have higher sale prices.**
-  - **Validation**: Regression analysis of `YearRemodAdd` versus `SalePrice`.
+### Hypothesis 2 — Renovation Effect
+-  _Hypothesis:_ Properties with recent renovations have higher sale prices.
+-  _Validation:_ Regression analysis of `YearRemodAdd` versus `SalePrice` shows a positive association (weaker than size/quality); effect is clearer when renovations raise OverallQual.
+-  _Outcome:_ **Partially supported** (impact is meaningful when it raises OverallQual).
 
-### Hypothesis 3
-- **Garages and high-quality finishes significantly impact property values.**
-  - **Validation**: Feature importance analysis from the regression model.
+### Hypothesis 3 — Basement & Garage Contribution
+-  _Hypothesis:_ Garages and high-quality finishes significantly impact property values.
+-  _Validation:_ Feature correlations and model coefficients show positive, smaller than `GrLivArea` effects; diminishing returns at higher ranges.
+-  _Outcome:_ **Supported** (secondary to size/quality but still beneficial).
 
 ### Visuals
 - **Correlation Heatmaps** to understand feature relationships.
@@ -157,7 +162,7 @@ The project implements a Linear Regression Model for predicting house prices. Th
    - **Test R² Score:** 0.791
    - **Mean Absolute Error (MAE):** $25,055.30
    - **Root Mean Squared Error (RMSE):** $40,046.56
-   - **Cross-Validation R² Mean:** 0.735
+   - **Cross-Validation R² Mean:** 0.735 (5-fold), **Std Dev:** 0.072
 
 ### Code Snippet: Model Training
 ```python
