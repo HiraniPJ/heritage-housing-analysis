@@ -4,20 +4,21 @@
 
 1. [Introduction](#introduction)
 2. [Business Requirements](#business-requirements)
-3. [User Stories](#user-stories)
-4. [Dataset Content](#dataset-content)
-5. [Hypothesis and Validation](#hypothesis-and-validation)
-6. [The Model](#the-model)
-7. [Implementation of Business Requirements](#implementation-of-business-requirements)
-8. [Design and Testing](#design-and-testing)
-9. [CRISP-DM Process](#crisp-dm-process)
-10. [Requirements Evaluation](#requirements-evaluation)
-11. [Improvements and Future Plans](#improvements-and-future-plans)
-12. [Bugs](#bugs)
-13. [Deployment](#deployment)
-14. [Technologies Used](#technologies-used)
-15. [Credits](#credits)
-16. [Acknowledgements](#acknowledgements)
+3. [Project Objectives](#project-objectives-and-success-criteria)
+4. [User Stories](#user-stories)
+5. [Dataset Content](#dataset-content)
+6. [Hypothesis and Validation](#hypothesis-and-validation)
+7. [The Model](#the-model)
+8. [Implementation of Business Requirements](#implementation-of-business-requirements)
+9. [Design and Testing](#design-and-testing)
+10. [CRISP-DM Process](#crisp-dm-process)
+11. [Requirements Evaluation](#requirements-evaluation)
+12. [Improvements and Future Plans](#improvements-and-future-plans)
+13. [Bugs](#bugs)
+14. [Deployment](#deployment)
+15. [Technologies Used](#technologies-used)
+16. [Credits](#credits)
+17. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -42,15 +43,44 @@ I implemented:
 
 ## Business Requirements
 
-The project fulfills the following key business requirements:
+The project fulfills the following key client's business requirements:
 
-1. **Data Exploration & Visualization:** Identify and showcase the relationships between property features and sale prices through various plots and charts.
+1. **Data Exploration & Visualization**
+   
+   Identify and clearly show the relationships between key features (e.g., GrLivArea, OverallQual, TotalBsmtSF, GarageArea) and sale price through static and interactive charts.
 
-2. **Price Prediction:** Develop a machine learning model capable of predicting house prices with a high degree of accuracy.
+2. **Price Prediction**
+   
+   Deliver a machine-learning model capable of producing reliable price estimates for new properties, with target performance of Test R² ≥ 0.75 and transparent error metrics (MAE, RMSE).
+   
+3. **Interactive Dashboard**
+   
+   Provide a streamlined web app for real-time “what-if” estimation and data exploration, aligned to the model’s feature set.
 
-3. **Interactive Dashboard:** Provide an easy-to-use web application for real-time property price estimation and data exploration.
+4. **Actionable Insights**
+   
+   Translate findings into practical recommendations for pricing and renovation priorities.
 
-4. **Actionable Insights:** Offer strategic recommendations for property improvement based on key influencing factors.
+
+## Project Objectives and Success Criteria
+
+-	**O1. Build trustable predictions (Req 2).**
+  
+    _Success if:_ Test R² ≥ 0.75 and cross-validation R² is close to test R² (low variance).
+  
+    _Result:_
+ 	
+-	**O2. Explain value drivers (Req 1 & 4).**
+  
+    _Success if:_ Visualizations and coefficients consistently show positive relationships for size/quality and the app exposes these relationships.
+  
+    _Result:_ 
+
+-	**O3. Enable scenario testing (Req 3).**
+  
+    _Success if:_ The app accepts user inputs for the model’s features and returns a prediction instantly, with validation to avoid input mismatch.
+  
+    _Result:_
 
 ---
 
