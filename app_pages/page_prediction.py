@@ -4,8 +4,8 @@ import joblib
 from pathlib import Path
 
 def page_prediction_body():
-    st.title("House Price Prediction")
-    st.info("Enter details below to predict the house price.")
+    st.title("House Price Prediction (What-If)")
+    st.info("Enter details below to estimate the sale price.")
 
     # 1) Load model
     pkl_path = Path('outputs/trained_model.pkl')
