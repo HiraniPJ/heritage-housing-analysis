@@ -28,15 +28,15 @@
 ## Introduction
 
 My client is the executor of a small estate and has inherited four houses in Ames, Iowa. They must decide whether to **sell now, renovate and sell, or hold and rent**. They asked me to build a solution that provides:
-•	A **defensible price estimate** for each property based on market-like data from Ames,
-•	**Clear visibility into which features drive value** (so renovation money is spent where it matters),
-•	An **interactive dashboard** to test “what-if” scenarios (e.g., “What if living area improves?”),
-•	Evidence that the model **generalizes** to new properties (not just the training data).
+-	A **defensible price estimate** for each property based on market-like data from Ames,
+-	**Clear visibility into which features drive value** (so renovation money is spent where it matters),
+-	An **interactive dashboard** to test “what-if” scenarios (e.g., “What if living area improves?”),
+-	Evidence that the model **generalizes** to new properties (not just the training data).
 
 I implemented:
-•	A **Streamlit web app** that lets me enter house features and instantly get a predicted sale price.
-•	A set of **exploratory visualizations** that show how house features relate to price in Ames.
-•	A **machine-learning model** (Linear Regression) trained on the Ames dataset with evaluation metrics and cross-validation to demonstrate robustness.
+-	A **Streamlit web app** that lets me enter house features and instantly get a predicted sale price.
+-	A set of **exploratory visualizations** that show how house features relate to price in Ames.
+-	A **machine-learning model** (Linear Regression) trained on the Ames dataset with evaluation metrics and cross-validation to demonstrate robustness.
 
 ---
 
