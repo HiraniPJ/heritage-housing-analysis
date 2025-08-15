@@ -43,7 +43,7 @@ def page_prediction_body():
     if st.button("Predict House Price"):
         try:
             prediction = float(model.predict(X)[0])
-            st.success(f"✅ Predicted House Price: **£{prediction:,.2f}**")
+            st.success(f"✅ Predicted House Price: **${prediction:,.2f}**")
         except Exception as e:
             st.error(f"Prediction failed: {e}")
             st.code(f"Input columns: {list(X.columns)}\nExpected: {selected_features}")

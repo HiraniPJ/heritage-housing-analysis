@@ -6,7 +6,7 @@ def _fmt_float(x, nd=3):
     return f"{x:.{nd}f}" if isinstance(x, (int, float)) else "—"
 
 def _fmt_money(x):
-    return f"£{x:,.0f}" if isinstance(x, (int, float)) else "—"
+    return f"${x:,.0f}" if isinstance(x, (int, float)) else "—"
 
 def page_modeling_body():
     """
