@@ -159,12 +159,15 @@ predictions = model.predict(X_test)
   - Correlation heatmap shows strong positive association between these features and SalePrice.
 -  _Outcome:_ **Supported** (Objective O2 met).
 -  _**Box Plots**_
+  
      <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/877eda96-167b-4a41-a4a0-ba6d386a89d5" />
      
      <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/13005e95-835c-4660-be8d-cb463760471c" />
 
      <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/dd97f46c-780c-43a9-bd50-13c235bd9a7e" />
- 
+
+
+
 
 ### Hypothesis 2 - Renovation Effect
 -  _Hypothesis:_ Properties with recent renovations have higher sale prices.
@@ -174,11 +177,12 @@ predictions = model.predict(X_test)
 -  _Outcome:_ **Supported** secondary to GrLivArea/OverallQual.
 -  _**GarageArea vs SalePrice**_
 
-       <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/75c73b7e-6731-463b-b9b6-e3cd56b396a5" />
+  <img width="667" height="488" alt="image" src="https://github.com/user-attachments/assets/a58e275a-a671-4f98-bd88-f811caacc521" />
+
         
 - **_TotalBsmtSF Distribution_**
-  
-       <img width="897" height="580" alt="image" src="https://github.com/user-attachments/assets/7c4034b6-00cd-4eb4-899f-eee1c6077384" />
+
+  <img width="892" height="576" alt="image" src="https://github.com/user-attachments/assets/0d5c86ac-5301-454f-813c-63b685531abf" />
 
 
 ### Hypothesis 3 - The predictive model generalizes well to unseen data.
@@ -195,7 +199,7 @@ predictions = model.predict(X_test)
      
     <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/13e0ac84-7c49-44c3-bac7-f44366569048" />
 
-   - **Residual & Cross-Validation Score**
+- **Residual & Cross-Validation Score**
      
      <img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/727271f9-d917-41d3-a89d-3bb27cb260c3" />
 
