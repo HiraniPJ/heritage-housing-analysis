@@ -16,9 +16,9 @@
 13. [Improvements and Future Plans](#improvements-and-future-plans)
 14. [Bugs](#bugs)
 15. [Deployment](#deployment)
-16. [Technologies Used](#technologies-used)
-17. [Credits](#credits)
-18. [Acknowledgements](#acknowledgements)
+17. [Technologies Used](#technologies-used)
+18. [Credits](#credits)
+19. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -152,25 +152,52 @@ predictions = model.predict(X_test)
 
 ## Hypothesis and Validation
 
-### Hypothesis 1 — Size & Quality Premium
--  _Hypothesis:_ Larger houses with better quality materials sell for higher prices.
--  _Validation:_ Confirmed using correlation heatmaps and scatter plots between `GrLivArea`, `OverallQual`, and `SalePrice`. Coefficients from the linear model are positive and material.
+### Hypothesis 1 - Size & Quality Premium
+-  _Hypothesis:_ Larger living area and higher material quality are associated with higher SalePrice.**
+- **Evidence:**  
+  - Positive slopes in **GrLivArea vs SalePrice** and **OverallQual vs SalePrice** charts (interactive).  
+  - Correlation heatmap shows strong positive association between these features and SalePrice.
 -  _Outcome:_ **Supported** (Objective O2 met).
+-  _**Box Plots**_
+     <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/877eda96-167b-4a41-a4a0-ba6d386a89d5" />
+     
+     <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/13005e95-835c-4660-be8d-cb463760471c" />
 
-### Hypothesis 2 — Renovation Effect
+     <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/dd97f46c-780c-43a9-bd50-13c235bd9a7e" />
+ 
+
+### Hypothesis 2 - Renovation Effect
 -  _Hypothesis:_ Properties with recent renovations have higher sale prices.
--  _Validation:_ Regression analysis of `YearRemodAdd` versus `SalePrice` shows a positive association (weaker than size/quality); effect is clearer when renovations raise OverallQual.
--  _Outcome:_ **Partially supported** (impact is meaningful when it raises OverallQual).
+- **Evidence:**  
+  - **GarageArea vs SalePrice** and **TotalBsmtSF vs SalePrice** show positive trends.  
+  - Model coefficients rank these as positively weighted features.
+-  _Outcome:_ **Supported** secondary to GrLivArea/OverallQual.
+-  _**GarageArea vs SalePrice**_
 
-### Hypothesis 3 — Basement & Garage Contribution
+       <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/75c73b7e-6731-463b-b9b6-e3cd56b396a5" />
+        
+- **_TotalBsmtSF Distribution_**
+  
+       <img width="897" height="580" alt="image" src="https://github.com/user-attachments/assets/7c4034b6-00cd-4eb4-899f-eee1c6077384" />
+
+
+### Hypothesis 3 - The predictive model generalizes well to unseen data.
 -  _Hypothesis:_ Garages and high-quality finishes significantly impact property values.
--  _Validation:_ Feature correlations and model coefficients show positive, smaller than `GrLivArea` effects; diminishing returns at higher ranges.
--  _Outcome:_ **Supported** (secondary to size/quality but still beneficial).
+- **Evidence (from `outputs/model_metrics.json`):**  
+  - **Train R²:** 0.745  
+  - **Test R²:** 0.791  
+  - **MAE:** $25,055.30  
+  - **RMSE:** $40,046.56  
+  - **5-fold CV R²:** 0.735 ± 0.072   
+  - **Plots:** Actual vs Predicted (test), Residuals vs Predicted, CV distribution.  
+-  _Outcome:_ **Supported** (The model shows solid generalization and stable CV performance).
+-  _**Actual vs Predicted Sale Price**_
+     
+    <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/13e0ac84-7c49-44c3-bac7-f44366569048" />
 
-### Visuals
-- **Correlation Heatmaps** to understand feature relationships.
-- **Box Plots** and **Scatter Plots** for feature-price impact assessment.
-- **Distribution Plots** for analyzing price variations.
+   - **Residual & Cross-Validation Score**
+     
+     <img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/727271f9-d917-41d3-a89d-3bb27cb260c3" />
 
 ---
 
@@ -200,69 +227,55 @@ predictions = model.predict(X_test)
 
 The dashboard is designed to be intuitive and user-friendly, with the following sections:
 
+### Visuals
+- **Correlation Heatmaps** to understand feature relationships.
+- **Box Plots** and **Scatter Plots** for feature-price impact assessment.
+- **Distribution Plots** for analyzing price variations.
+
 1. **Project Summary**:
    - Overview of the objectives, key findings, and project details.
-    ![image](https://github.com/user-attachments/assets/013845e0-8b3f-4ae7-a888-cb13e168d252)
+     
+   <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/2afc083f-f953-417e-9ac4-cdf9bf217294" />
 
 
 2. **Data Exploration**:
+   
    - **Interactive visualizations** to explore the dataset.
      
-    ![image](https://github.com/user-attachments/assets/6174a873-b939-4d06-95b8-4ca5d9a4a2ba)
+    <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/6174a873-b939-4d06-95b8-4ca5d9a4a2ba" />
 
-
-   - **Heatmaps** and feature distribution charts.
-     
-    ![image](https://github.com/user-attachments/assets/06509d54-e579-490c-897a-c90b431a85fe)
-
-
-  - **Scatter Plots**
-    
-    ![image](https://github.com/user-attachments/assets/c92a20a9-9655-420e-a4dc-f39a1ad3cdeb)
-    ![image](https://github.com/user-attachments/assets/1d027451-c5c5-4e1b-b9ef-7e6827c2231e)
-    ![image](https://github.com/user-attachments/assets/98e601d7-8db2-4c9b-8d5f-9cb112d82497)
-
-
-  - **Box Plots for Key Features**
-    
-    ![image](https://github.com/user-attachments/assets/e44581e7-08fd-4bad-a53c-0de9ca90508e)
-    ![image](https://github.com/user-attachments/assets/d6480b0e-6968-4bda-9fef-a28e82a56507)
-    ![image](https://github.com/user-attachments/assets/16b09e26-7cee-43a4-bb03-0ed6bbba56db)
 
    - **Sale Price Distribution (Interactive)**
-    ![image](https://github.com/user-attachments/assets/0238da5f-d1ff-4d02-acf4-4b01de661f10)
+  
+      <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/1d364489-4c18-4406-9705-b86f4a6a3a01" />
 
    - **Living Area vs Sale Price (Interactive)**
-    ![image](https://github.com/user-attachments/assets/84741835-9621-47b0-b636-444d3622c5e1)
+     
+      <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/4ea81514-d5f3-48a8-8c97-0f00c463b372" />
 
    - **Garage Area vs Sale Price (Interactive)**
-    ![image](https://github.com/user-attachments/assets/4ed4cbb9-1aa5-42bc-b227-16a6c7384fb1)
+     
+      <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/c879e7a8-c2f0-4b96-b277-0ae4b22471a3" />
 
 
 4. **Model Evaluation**:
    
-    ![image](https://github.com/user-attachments/assets/c20310db-7520-466e-a9a3-743515fb64fe)
+   <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/85f546d4-ad38-45a6-9c63-11a67998ee8a" />
+   
 
 5. **Prediction Page Tested**
 
-    ![image](https://github.com/user-attachments/assets/518e89fb-73b5-478d-b7fa-2d236d7203c1)
-
-  - **Residual & Cross-Validation Score**
-    
-    ![image](https://github.com/user-attachments/assets/edf314ef-364a-4a09-93ad-d9f604ea2069)
-    
-    ![image](https://github.com/user-attachments/assets/b6d316cc-70f7-41c0-91d2-23c998897009)
-    ![image](https://github.com/user-attachments/assets/094ffc28-6697-4cc9-ac31-488bc07081a0)
+    <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/28c9bec7-0388-4675-8322-3828ff0b9cc2" />
     
 
 6. **Hypotheses and Validation**:
 
-    ![image](https://github.com/user-attachments/assets/f4fdd759-2d4c-4720-9531-8b0580286cf6)
+    <img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/9b8387d5-f4d7-4767-8dc2-5e1c7154f82a" />
 
 
 7. **Feedback and Reporting**
    
-    ![image](https://github.com/user-attachments/assets/be286864-4c7f-441d-8e51-770c813f6899)
+    <img width="400" height="700" alt="image" src="https://github.com/user-attachments/assets/be286864-4c7f-441d-8e51-770c813f6899" />
 
 ---
 
@@ -341,7 +354,7 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 
 ### Resolved Bugs
 - **Modeling and Evaluation Page Error.**
-![image](https://github.com/user-attachments/assets/c089d47b-b213-42d6-a41e-bc650fa0b19d)
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/c089d47b-b213-42d6-a41e-bc650fa0b19d" />
 
 **Error Handling**
 - Fixed KeyError: Replaced "R² Score" with "Test R²" as the correct metric key from model_metrics.json.
@@ -381,6 +394,20 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology guide
 
 3. Ensure the `.python-version` file is set to a Heroku-supported Python version.
 
+
+## Prediction Page (How-To)
+
+1. Go to **Prediction** in the left sidebar.  
+2. Enter values for: `GrLivArea`, `OverallQual`, `GarageArea`, `TotalBsmtSF`.  
+3. Click **Predict House Price**.  
+4. The app validates your inputs and displays an estimated price.
+
+**Troubleshooting**  
+- If you see: `AttributeError: 'tuple' object has no attribute 'predict'`  
+  This indicates the serialized object isn’t a fitted model. Re-train and save via the notebook:  
+  - Ensure you save **only** the fitted model object (not a tuple) to `outputs/trained_model.pkl`.  
+  - Confirm the prediction page loads it with `joblib.load('outputs/trained_model.pkl')` and calls `.predict(...)` on a DataFrame with the **same feature order** used in training.
+   
 ---
 
 ## Technologies Used
