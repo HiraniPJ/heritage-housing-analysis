@@ -267,7 +267,7 @@ The dashboard is designed to be intuitive and user-friendly, with the following 
 
 5. **Prediction Page Tested**
 
-    <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/28c9bec7-0388-4675-8322-3828ff0b9cc2" />
+    <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/f86ed7ea-1ab3-41a1-a88d-3f6a728cc0f9" />
     
 
 6. **Hypotheses and Validation**:
