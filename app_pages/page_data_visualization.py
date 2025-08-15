@@ -19,19 +19,6 @@ def page_data_visualization_body():
         st.error(f"Correlation Heatmap not found. Please ensure it exists at {heatmap_path}.")
 
 
-    # Box Plots
-    st.header("Box Plots")
-    boxplot_files = {
-        "GrLivArea vs SalePrice": f"{output_dir}/GrLivArea_vs_SalePrice.png",
-        "OverallQual vs SalePrice": f"{output_dir}/OverallQual_vs_SalePrice.png",
-        "GarageArea vs SalePrice": f"{output_dir}/GarageArea_vs_SalePrice.png"
-    }
-    for title, path in boxplot_files.items():
-        try:
-            st.image(Image.open(path), caption=title, use_container_width=True)
-        except FileNotFoundError:
-            st.error(f"{title} not found at {path}.")
-
     # Box Plots for Key Features
     st.header("Box Plots for Key Features")
     boxplot_files = {
