@@ -167,8 +167,6 @@ predictions = model.predict(X_test)
      <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/dd97f46c-780c-43a9-bd50-13c235bd9a7e" />
 
 
-
-
 ### Hypothesis 2 - Renovation Effect
 -  _Hypothesis:_ Properties with recent renovations have higher sale prices.
 - **Evidence:**  
@@ -177,12 +175,12 @@ predictions = model.predict(X_test)
 -  _Outcome:_ **Supported** secondary to GrLivArea/OverallQual.
 -  _**GarageArea vs SalePrice**_
 
-  <img width="667" height="488" alt="image" src="https://github.com/user-attachments/assets/a58e275a-a671-4f98-bd88-f811caacc521" />
+  <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/a58e275a-a671-4f98-bd88-f811caacc521" />
 
         
 - **_TotalBsmtSF Distribution_**
 
-  <img width="892" height="576" alt="image" src="https://github.com/user-attachments/assets/0d5c86ac-5301-454f-813c-63b685531abf" />
+  <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/0d5c86ac-5301-454f-813c-63b685531abf" />
 
 
 ### Hypothesis 3 - The predictive model generalizes well to unseen data.
@@ -264,8 +262,8 @@ The dashboard is designed to be intuitive and user-friendly, with the following 
 
 4. **Model Evaluation**:
    
-   <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/85f546d4-ad38-45a6-9c63-11a67998ee8a" />
-   
+   <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/32d13a7d-024a-43b0-b339-9523507d8097" />
+
 
 5. **Prediction Page Tested**
 
